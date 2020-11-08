@@ -3,12 +3,12 @@
 async function getData() {
     const response = await axios.get('https://swapi.dev/api/planets/');
     const { next, results } = response.data //destructure to assing variable to objects
-    for (let planet of results) { 
+    for (let planet of results) {
         console.log(planet.name);
     }
     const responseTwo = await axios.get(next);
     const resultsTwo = responseTwo.data.results;
-    for (let planet of resultsTwo) { 
+    for (let planet of resultsTwo) {
         console.log(planet.name);
     }
 }
@@ -39,3 +39,24 @@ const btn = document.querySelector('#getLaunches');
 btn.addEventListener('click', getSpaceData);
 
 // the above example will show the launch mission name and the rocket being used
+
+async function getJoke(first, last) {
+    let res = await axios.get(`http://api.icndb.com/jokes/random?firstName=${first}&lastName=${last}`);
+    console.log(res.data.value.joke)
+};
+
+
+async function getUsers() {
+    const res = await axios.get('https://reqres.in/api/users');
+    console.log(res)
+}
+
+async function createUser() {
+    const res = await axios.post('https://reqres.in/api/users', {username :
+'testUser', email: 'testEmail@testmail.com', age: 1});
+    console.log(res);
+}
+
+createUser();
+
+
